@@ -9,23 +9,22 @@ import java.util.Queue;
  */
 public class Cola {
     
-    private Queue<String> eventos = new LinkedList<>(); 
+    private Queue<Punto> eventos = new LinkedList<>(); 
     
     private Cola() {
     }
 
     private static class helper {
-
         private static final Cola INSTANCE = new Cola();
     }
 
     public static Cola getInstance() {
         return helper.INSTANCE;
     }
-    public void add(String instruccion){
+    public void add(Punto instruccion){
         eventos.add(instruccion);
     }
-    public String next(){
+    public Punto next(){
         return eventos.poll();
     }
     
