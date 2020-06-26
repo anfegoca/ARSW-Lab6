@@ -16,7 +16,21 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>2.3.1.RELEASE</version>
         </dependency>
-        
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.11.1</version>
+        </dependency>
     </dependencies>
+    <build>
+    <plugins>
+      <plugin>
+        <groupId>com.heroku.sdk</groupId>
+        <artifactId>heroku-maven-plugin</artifactId>
+        <version>3.0.2</version>
+      </plugin>
+    </plugins>
+  </build>
     
 </project>
