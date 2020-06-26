@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* co.edu.escuelaing.arsw.tablero.WebSiteController
+web: java -jar target/Tablero-1.0-SNAPSHOT.jar
