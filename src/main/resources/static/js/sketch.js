@@ -1,16 +1,25 @@
 function setup() {
-    createCanvas(640, 480);
+    createCanvas(1000, 1000);
 }
-const component = new StatusComponent(props);
 
+function dibujo(p){
+    if(p!==null){
+    fill(0, 0, 0);
+    ellipse(p.x, p.y, 20, 20);
+}
+    
+}
 function draw() {
     if (mouseIsPressed === true) {
         fill(0, 0, 0);
-        addPoint(mouseX,mouseY);
         //ellipse(mouseX, mouseY, 20, 20);
+        StatusComponent.addPoint(mouseX,mouseY);
     }
     if (mouseIsPressed === false) {
         fill(255, 255, 255);
     }
+}
+function limpiar(){
+    background(255,255,255);
 }
 

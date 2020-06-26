@@ -8,55 +8,77 @@ class StatusComponent extends React.Component {
         };
     }
     static addPoint(mouseX,mouseY){
+        //console.log("HOLA");
         const punto = new FormData();
-        data.append('x', mouseX);
-        data.append('y', mouseY);
-    }
+        punto.append('x', mouseX);
+        punto.append('y', mouseY);
+        fetch("/addPoint",{
+        method: 'post',
+        body: punto
+        }).then(response => {
+          //console.log("punto enviado")
+        }).catch(err => {
+          console.log(err)
+        })  
+      }
+    
     componentDidMount() {
         this.timerID = setInterval(
-                () => this.addpoint(),
-                5000
+                () => this.verificar(),
+                10
                 );
     }
-    addpoint(){
-        fetch("/add", punto)
-        .then(data => this.setState({ postId: data.id }));
+    verificar(){
+        fetch("/vacio").then(res => res.json()).then((result) => {
+            if(!result){
+                this.getpoints()
+            }
+            });
         
     }
-    checkStatus() {
-        fetch("/status")
-                .then(res => res.json())
-                .then(
-                        (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        status: result.status
-                    });
-                },
-    // Note: it's important to handle errors here
-    // instead of a catch() block so that we don't swallow
-    // exceptions from actual bugs in components.
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                            error
-                    });
-                }
-                )
-                }
+    getpoints() {
+     //console.log("punto get");
+    fetch("/getPoint")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+              
+            isLoaded: true,
+            status: "Dibujando"
+            
+            //items: result.items
+          });
+          dibujo(result);
+        },
+        // Nota: es importante manejar errores aquí y no en 
+        // un bloque catch() para que no interceptemos errores
+        // de errores reales en los componentes.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+      
+  }
     render() {
         const {error, isLoaded, status} = this.state;
             if (error) {
                 return <div>Error: {error.message}</div>;
                     } else if (!isLoaded) {
-                        return <div>Loading...</div>;
+                        return <div>Ya puede dibujar...</div>;
                     } else {
                         return (
                             <div> 
-                                <h1>The server status is:</h1>
+                                <h1>Tablero:</h1>
                                     <p>
                                         {status}
                                     </p>
+                                            
+                                            
+                                            
                             </div>
                                 );
                     }
