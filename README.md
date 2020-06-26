@@ -7,7 +7,7 @@ En este proyecto se realizó un tablero web, en el cual varios usuarios pueden e
 Para hacer uso del proyecto solo debe clonar el repositorio o descargarlo directamente, para ejectarlo lo hacemos por medio de la consola usando el siguiente comando.
 
 ```bash
-mvnw exce:java -Dexec.mainClass=co.edu.escuelaing.arsw.tablero.WebSiteController
+mvn exec:java -Dexec.mainClass=co.edu.escuelaing.arsw.tablero.WebSiteController
 ```
 
 O puede usar el tablero directamente desde la siguiente dirección:
