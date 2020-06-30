@@ -2,6 +2,8 @@ package co.edu.escuelaing.arsw.tablero;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
@@ -21,9 +23,18 @@ public class WebSiteController {
     private HttpServletRequest request;
 
     public static void main(String[] args) {
-        SpringApplication.run(WebSiteController.class, args);
+        SpringApplication app = new SpringApplication(WebSiteController.class);
+        app.setDefaultProperties(Collections.singletonMap("server.port",getPort()));
+        app.run(args);
     }
-    /*
+    static int getPort() {
+        if (System.getenv("PORT") != null) {
+            return Integer.parseInt(System.getenv("PORT"));
+        }
+        return 8080; //returns default port if heroku-port isn't set (i.e. on localhost)
+    }
+
+    
     @GetMapping("/status")
     public String status() {
         return "{\"status\":\"Greetings from Spring Boot. "
